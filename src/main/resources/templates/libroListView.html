@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Listado de Libros</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Libros</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr><th>ID</th><th>Título</th><th>Autor</th><th>Editar</th><th>Borrar</th></tr>
+            </thead>
+            <tbody>
+            <tr th:each="libro : ${listaLibros}">
+                <td th:text="${libro.id}">1</td>
+                <td th:text="${libro.titulo}">Título</td>
+                <td th:text="${libro.autor.nombre}">Autor</td>
+                <td>
+                    <a class="btn btn-info"
+                       th:href="@{/libros/edit/{id}(id=${libro.id})}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger"
+                       th:href="@{/libros/delete/{id}(id=${libro.id})}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary" th:href="@{/libros/new/{id}(id=${autor.id})}">Nuevo libro</a><br/>
+    <p th:if="${msgError != null}" class="alert alert-danger">
+        <span th:text="${msgError}">mensaje de error</span>
+    </p>
+</div>
+</body>
+</html>

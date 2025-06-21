@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Editar Libro</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<h1>Editar libro</h1>
+<form method="post" th:action="@{/libros/edit/submit}" th:object="${libroForm}">
+
+    <!-- Ocultamos el ID del libro -->
+    <input type="hidden" th:field="*{id}" />
+
+    <!-- Mostramos el título para edición -->
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" required /><br/>
+
+    <!-- Autor oculto si no se permite cambiar -->
+    <input type="hidden" th:field="*{autor.id}" />
+
+    <!-- Si quieres permitir elegir otro autor:
+    <label>Autor:</label>
+    <select th:field="*{autor.id}">
+        <option th:each="autor : ${listaAutores}"
+                th:value="${autor.id}"
+                th:text="${autor.nombre}">
+        </option>
+    </select><br/>
+    -->
+
+    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+</form>
+</body>
+</html>

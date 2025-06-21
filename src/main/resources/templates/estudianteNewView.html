@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nuevo Estudiante</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <h1>Nuevo estudiante</h1>
+    <form method="post" th:action="@{/estudiantes/new/submit}" th:object="${estudianteForm}">
+
+        <!-- Campo para el nombre del estudiante -->
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required /><br/>
+
+        <!-- Lista de cursos si quieres que se puedan seleccionar -->
+        <!--
+        <label>Selecciona cursos:</label>
+        <div th:each="curso : ${listaCursos}">
+          <input type="checkbox" th:field="*{cursos}" th:value="${curso.id}" />
+          <span th:text="${curso.nombre}">Curso</span><br/>
+        </div>
+        -->
+
+        <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+</div>
+</body>
+</html>

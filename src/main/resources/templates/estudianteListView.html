@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Estudiantes</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Estudiantes</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th><th>Nombre</th><th>Nº de Cursos</th>
+                <th>Editar</th><th>Borrar</th><th>Cursos</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="estudiante : ${listaEstudiantes}">
+                <td th:text="${estudiante.id}">1</td>
+                <td th:text="${estudiante.nombre}">Nombre</td>
+                <td th:text="${estudiante.cursos.size()}">0</td>
+                <td>
+                    <a class="btn btn-info" th:href="@{/estudiantes/edit/{id}(id=${estudiante.id})}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger" th:href="@{/estudiantes/delete/{id}(id=${estudiante.id})}">Borrar</a>
+                </td>
+                <td>
+                    <a class="btn btn-success" th:href="@{/estudiantes/{id}/cursos(id=${estudiante.id})}">Ver cursos</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary" th:href="@{/estudiantes/new}">Nuevo estudiante</a><br/>
+    <p th:if="${msgError != null}" class="alert alert-danger">
+        <span th:text="${msgError}">Mensaje de error</span>
+    </p>
+</div>
+</body>
+</html>

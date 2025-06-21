@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+  <title>Nuevo Autor</title>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Nuevo autor</h1>
+    <form method="post" th:action="@{/autores/new/submit}" th:object="${autorForm}">
+      <label>Nombre:
+        <input type="text" id="nombre" th:field="*{nombre}" />
+      </label><br/>
+      <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+  </div>
+</div>
+</body>
+</html>

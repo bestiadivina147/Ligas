@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+  <title>Autores</title>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Autores</h1>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th><th>Nombre</th><th>Nº de libros</th>
+        <th>Editar</th><th>Borrar</th><th>Libros</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="autor : ${listaAutores}">
+        <td th:text="${autor.id}">1</td>
+        <td th:text="${autor.nombre}">Nombre</td>
+        <td th:text="${autor.libros.size()}">0</td>
+        <td><a class="btn btn-info" th:href="@{/autores/edit/{id}(id=${autor.id})}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{/autores/delete/{id}(id=${autor.id})}">Borrar</a></td>
+        <td><a class="btn btn-success" th:href="@{/libros/{id}(id=${autor.id})}">Ver Libros</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-primary" th:href="@{/autores/new}">Nuevo autor</a><br/>
+  <p th:if="${msgError!=null}" class="alert alert-danger">
+    <span th:text="${msgError}">mensaje de error</span>
+  </p>
+</div>
+</body>
+</html>

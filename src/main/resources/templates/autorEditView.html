@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+  <title>Editar Autor</title>
+</head>
+<body>
+<h1>Editar autor</h1>
+<form method="post" th:action="@{/autores/edit/submit}" th:object="${autorForm}">
+  <label>ID (solo lectura):</label>
+  <input type="text" id="id" th:field="*{id}" readonly /><br/>
+
+  <label>Nombre:</label>
+  <input type="text" id="nombre" th:field="*{nombre}" /><br/>
+
+  <!-- Campo oculto para evitar conflictos al editar -->
+
+
+  <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+</form>
+</body>
+</html>

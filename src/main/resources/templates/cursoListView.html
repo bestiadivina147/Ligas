@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cursos</title>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Cursos</h1>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th><th>Título</th><th>Nº Estudiantes</th>
+        <th>Editar</th><th>Borrar</th><th>Estudiantes</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="curso : ${listaCursos}">
+        <td th:text="${curso.id}">1</td>
+        <td th:text="${curso.titulo}">Título</td>
+        <td th:text="${curso.estudiantes.size()}">0</td>
+        <td><a class="btn btn-info" th:href="@{/cursos/edit/{id}(id=${curso.id})}">Editar</a></td>
+        <td><a class="btn btn-danger" th:href="@{/cursos/delete/{id}(id=${curso.id})}">Borrar</a></td>
+        <td><a class="btn btn-success" th:href="@{/cursos/{id}/estudiantes(id=${curso.id})}">Ver estudiantes</a></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-primary" th:href="@{/cursos/new}">Nuevo curso</a><br/>
+  <p th:if="${msgError != null}" class="alert alert-danger">
+    <span th:text="${msgError}">Mensaje de error</span>
+  </p>
+</div>
+</body>
+</html>

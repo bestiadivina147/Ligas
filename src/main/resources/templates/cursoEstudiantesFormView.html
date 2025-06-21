@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Asignar Estudiantes al Curso</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Estudiantes del curso: ' + ${cursoForm.titulo}">Curso</h1>
+
+    <form method="post" th:action="@{/cursos/asignar-estudiantes}" th:object="${cursoForm}">
+        <input type="hidden" th:field="*{id}" />
+
+        <div class="mb-3">
+            <label>Selecciona estudiantes:</label><br/>
+            <div th:each="estudiante : ${listaEstudiantes}">
+                <input type="checkbox" th:field="*{estudiantes}" th:value="${estudiante.id}" />
+                <span th:text="${estudiante.nombre}">Nombre</span><br/>
+            </div>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Guardar relaciones" />
+        <a class="btn btn-secondary" th:href="@{/cursos}">Volver</a>
+    </form>
+</div>
+</body>
+</html>

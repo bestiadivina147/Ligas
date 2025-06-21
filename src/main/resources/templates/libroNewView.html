@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Nuevo Libro</title>
+</head>
+<body>
+<div class="container">
+    <h1>Nuevo libro</h1>
+    <form method="post" th:action="@{/libros/new/submit}" th:object="${libroForm}">
+        <input type="hidden" th:field="*{autor.id}" />
+
+
+        <!-- Campo visible para el título -->
+        <label>Título:
+            <input type="text" id="titulo" th:field="*{titulo}" />
+        </label><br/>
+
+        <!-- Alternativa si quieres que el usuario elija el autor:
+        <label>Autor:
+          <select th:field="*{autor}">
+            <option th:each="autor : ${listaAutores}"
+                    th:value="${autor.id}"
+                    th:text="${autor.nombre}">
+            </option>
+          </select>
+        </label><br/> -->
+
+        <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+</div>
+</body>
+</html>

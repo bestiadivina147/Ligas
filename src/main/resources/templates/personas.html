@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Personas</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h2 class="mb-3">Listado de Personas</h2>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="persona : ${personas}">
+            <td th:text="${persona.id}">1</td>
+            <td th:text="${persona.nombre}">Ejemplo Nombre</td>
+            <td th:text="${persona.pasaporte.numero}">Número de pasaporte</td>
+            <td>
+                <a th:href="@{'/personas/ver/' + ${persona.id}}" class="btn btn-primary btn-sm">Ver</a>
+                <a th:href="@{'/personas/editar/' + ${persona.id}}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{'/personas/eliminar/' + ${persona.id}}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

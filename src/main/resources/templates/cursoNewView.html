@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Nuevo Curso</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <h1>Nuevo curso</h1>
+    <form method="post" th:action="@{/cursos/new/submit}" th:object="${cursoForm}">
+
+        <label>Título del curso:</label>
+        <input type="text" th:field="*{titulo}" required /><br/>
+
+        <!-- Si quieres seleccionar estudiantes asociados al curso en su creación:
+        <label>Selecciona estudiantes:</label>
+        <div th:each="estudiante : ${listaEstudiantes}">
+          <input type="checkbox" th:field="*{estudiantes}" th:value="${estudiante.id}" />
+          <span th:text="${estudiante.nombre}">Nombre</span><br/>
+        </div>
+        -->
+
+        <input class="btn btn-primary" type="submit" value="Guardar" />
+    </form>
+</div>
+</body>
+</html>

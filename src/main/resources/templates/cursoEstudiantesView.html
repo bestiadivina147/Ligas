@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Estudiantes del Curso</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <h1 th:text="'Estudiantes del curso: ' + ${curso.titulo}">Curso</h1>
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>ID</th><th>Nombre</th><th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="estudiante : ${curso.estudiantes}">
+            <td th:text="${estudiante.id}">1</td>
+            <td th:text="${estudiante.nombre}">Nombre</td>
+            <td>
+                <a class="btn btn-info" th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}">Editar</a>
+                <a class="btn btn-danger" th:href="@{/estudiantes/borrar/{id}(id=${estudiante.id})}">Borrar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="mt-3">
+        <a class="btn btn-warning"
+           th:href="@{/cursos/{id}/asignar-estudiantes(id=${curso.id})}">
+            Asignar estudiantes
+        </a>
+    </div>
+        <a class="btn btn-primary" th:href="@{/cursos}">Volver a cursos</a>
+
+
+
+</div>
+</body>
+</html>
