@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Nuevo Concesionario</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Nuevo concesionario</h1>
+        <form method="post" th:action="@{/concesionarios/new/submit}" th:object="${concesionarioForm}">
+            <label>Nombre:<input type="text" id="nombre" th:field="*{nombre}" required /></label><br/>
+            <label>Localidad:<input type="text" id="localidad" th:field="*{localidad}" required /></label><br/>
+            <input class="btn btn-primary" type="submit" value="Enviar" />
+        </form>
+    </div>
+</div>
+</body>
+</html>

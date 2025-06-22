@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <title>Editar coche</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<h1>Editar coche</h1>
+<form method="post" th:action="@{/coches/edit/submit}" th:object="${cocheForm}">
+    <!-- Ocultamos el ID del coche -->
+    <input type="hidden" th:field="*{id}" />
+
+    <!-- También ocultamos el concesionario para no modificarlo desde aquí -->
+    <input type="hidden" th:field="*{concesionario}" />
+
+    <label>Marca:</label>
+    <input type="text" th:field="*{marca}" required /><br/>
+
+    <label>Modelo:</label>
+    <input type="text" th:field="*{modelo}" required /><br/>
+
+    <label>Matrícula:</label>
+    <input type="text" th:field="*{matricula}" required /><br/>
+
+    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+</form>
+</body>
+</html>

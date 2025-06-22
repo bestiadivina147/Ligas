@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Concesionarios</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1>Concesionarios</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Localidad</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+                <th>Coches</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="concesionario : ${listaConcesionarios}">
+                <td th:text="${concesionario.nombre}">Nombre</td>
+                <td th:text="${concesionario.localidad}">Localidad</td>
+                <td>
+                    <a class="btn btn-info"
+                       th:href="@{/concesionarios/edit/{nombre}(nombre=${concesionario.nombre})}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger"
+                       th:href="@{/concesionarios/delete/{nombre}(nombre=${concesionario.nombre})}">Borrar</a>
+                </td>
+                <td>
+                    <a class="btn btn-success"
+                       th:href="@{/coches/{nombre}(nombre=${concesionario.nombre})}">Ver coches</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a class="btn btn-primary" th:href="@{/concesionarios/new}">Nuevo concesionario</a><br/>
+    <p th:if="${msgError != null}" class="alert alert-danger">
+        <span th:text="${msgError}">Mensaje de error</span>
+    </p>
+</div>
+</body>
+</html>

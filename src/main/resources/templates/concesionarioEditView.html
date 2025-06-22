@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar Concesionario</title>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+  <h1>Editar concesionario</h1>
+  <form method="post" th:action="@{/concesionarios/edit/submit}" th:object="${concesionarioForm}">
+    <!-- Nombre como ID: solo lectura -->
+    <label>Nombre (solo lectura):</label>
+    <input type="text" id="nombre" th:field="*{nombre}" readonly /><br/>
+
+    <label>Localidad:</label>
+    <input type="text" id="localidad" th:field="*{localidad}" required /><br/>
+
+    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+  </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Nuevo Coche</title>
+</head>
+<body>
+<h1>Nuevo coche</h1>
+<form method="post" th:action="@{/coches/new/submit}" th:object="${cocheForm}">
+
+    <!-- Si el concesionario ya está preasignado -->
+    <input type="hidden" th:field="*{concesionario}" />
+
+    <!-- Alternativamente, puedes usar este bloque si quieres seleccionar el concesionario manualmente -->
+    <!--
+    <label>Concesionario:
+      <select th:field="*{concesionario}">
+        <option th:each="c : ${listaConcesionarios}"
+                th:value="${c}"
+                th:text="${c.nombre}">Concesionario</option>
+      </select>
+    </label><br/>
+    -->
+
+    <label>Marca:
+        <input type="text" th:field="*{marca}" required />
+    </label><br/>
+
+    <label>Modelo:
+        <input type="text" th:field="*{modelo}" required />
+    </label><br/>
+
+    <label>Matrícula:
+        <input type="text" th:field="*{matricula}" required />
+    </label><br/>
+
+    <input class="btn btn-primary" type="submit" value="Enviar" />
+</form>
+</body>
+</html>
