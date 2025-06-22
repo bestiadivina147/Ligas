@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Cursos de Estudiante</title>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+  <h1 th:text="'Cursos de: ' + ${estudiante.nombre}">Nombre del estudiante</h1>
+
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th>ID</th><th>Título</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="curso : ${estudiante.cursos}">
+      <td th:text="${curso.id}">1</td>
+      <td th:text="${curso.titulo}">Título</td>
+    </tr>
+    </tbody>
+  </table>
+
+  <a class="btn btn-primary" th:href="@{/estudiantes}">Volver a estudiantes</a>
+</div>
+</body>
+</html>

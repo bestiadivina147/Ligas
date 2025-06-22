@@ -2,9 +2,7 @@ package edu.badpals.ligas.model;
 
 import jakarta.persistence.*;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class Estudiante {
@@ -15,12 +13,12 @@ public class Estudiante {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.REMOVE, mappedBy = "estudiantes")
 
-    private Set<Curso> cursos = new HashSet<>();
+    private List<Curso> cursos = new ArrayList<>();
 
     public Estudiante() {
     }
 
-    public Estudiante(Integer id, String nombre, Set<Curso> cursos) {
+    public Estudiante(Integer id, String nombre, List<Curso> cursos) {
         this.id = id;
         this.nombre = nombre;
         this.cursos = cursos;
@@ -42,11 +40,11 @@ public class Estudiante {
         this.nombre = nombre;
     }
 
-    public Set<Curso> getCursos() {
+    public List<Curso> getCursos() {
         return cursos;
     }
 
-    public void setCursos(Set<Curso> cursos) {
+    public void setCursos(List<Curso> cursos) {
         this.cursos = cursos;
     }
 

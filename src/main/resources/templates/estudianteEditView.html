@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Editar Estudiante</title>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+    <h1>Editar estudiante</h1>
+
+    <form method="post" th:action="@{/estudiantes/edit/submit}" th:object="${estudianteForm}">
+        <!-- ID oculto -->
+        <input type="hidden" th:field="*{id}" />
+
+        <!-- Campo editable para el nombre -->
+        <label>Nombre:</label>
+        <input type="text" th:field="*{nombre}" required /><br/>
+
+
+        <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+        <a class="btn btn-secondary" th:href="@{/estudiantes}">Cancelar</a>
+    </form>
+</div>
+</body>
+</html>

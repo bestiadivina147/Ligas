@@ -22,6 +22,9 @@
             <td>
                 <a class="btn btn-info" th:href="@{/estudiantes/editar/{id}(id=${estudiante.id})}">Editar</a>
                 <a class="btn btn-danger" th:href="@{/estudiantes/borrar/{id}(id=${estudiante.id})}">Borrar</a>
+                <a class="btn btn-outline-danger" th:href="@{/cursos/{cursoId}/quitar-estudiante/{estudianteId}(cursoId=${curso.id}, estudianteId=${estudiante.id})}">
+                    Quitar
+                </a>
             </td>
         </tr>
         </tbody>

@@ -96,7 +96,6 @@ public class AutorController {
 
     @PostMapping("/edit/submit")
     public String showEditSubmit(@Valid @ModelAttribute("cuentaForm") Autor autor, BindingResult bindingResult) {
-
         if (bindingResult.hasErrors()) {
             return "redirect:/autores/?err=1";
         } else {

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Editar Curso</title>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+</head>
+<body>
+<div class="container">
+  <h1>Editar curso</h1>
+
+  <form method="post" th:action="@{/cursos/edit/submit}" th:object="${cursoForm}">
+
+    <!-- ID oculto -->
+    <input type="hidden" th:field="*{id}" />
+
+    <!-- Campo editable para el título -->
+    <label>Título:</label>
+    <input type="text" th:field="*{titulo}" required /><br/>
+
+
+
+    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+    <a class="btn btn-secondary" th:href="@{/cursos}">Cancelar</a>
+  </form>
+</div>
+</body>
+</html>
