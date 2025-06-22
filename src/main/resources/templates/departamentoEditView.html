@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+  <title>MyApp</title>
+</head>
+<body>
+<h1>Editar departamento</h1>
+<form method="post" th:action="@{/departamentos/edit/submit}" th:object="${departamentoForm}">
+
+  <label>ID (solo lectura):
+    <input type="text" id="id" th:field="*{id}" readonly />
+  </label><br/>
+
+  <label>Nombre:
+    <input type="text" id="nombre" th:field="*{nombre}" required />
+  </label><br/>
+
+  <!-- No editamos directamente la lista de empleados aquí -->
+  <input class="btn btn-primary" type="submit" value="Enviar" />
+</form>
+</body>
+</html>

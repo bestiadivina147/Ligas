@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Nuevo Empleado</title>
+</head>
+<body>
+<div class="container">
+    <h1>Nuevo empleado</h1>
+    <form method="post" th:action="@{/empleados/new/submit}" th:object="${empleadoForm}">
+
+        <!-- Se puede usar oculto si ya está asignado desde la URL o controlador -->
+        <input type="hidden" th:field="*{departamento}" />
+
+        <!-- Alternativamente, usar este bloque si quieres seleccionar manualmente -->
+        <!--
+        <label>Departamento:
+          <select th:field="*{departamento}">
+            <option th:each="d : ${listaDepartamentos}"
+                    th:value="${d}"
+                    th:text="${d.nombre}">Departamento</option>
+          </select>
+        </label><br/>
+        -->
+
+        <label>Nombre:
+            <input type="text" th:field="*{nombre}" required />
+        </label><br/>
+
+        <label>Puesto:
+            <input type="text" th:field="*{puesto}" required />
+        </label><br/>
+
+        <input class="btn btn-primary" type="submit" value="Enviar" />
+    </form>
+</div>
+</body>
+</html>

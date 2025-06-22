@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+  <title>Departamentos</title>
+</head>
+<body>
+<div class="container">
+  <div class="row justify-content-center">
+    <h1>Departamentos</h1>
+    <table class="table table-striped">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Editar</th>
+        <th>Borrar</th>
+        <th>Empleados</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="departamento : ${listaDepartamentos}">
+        <td th:text="${departamento.id}">ID</td>
+        <td th:text="${departamento.nombre}">Nombre</td>
+        <td>
+          <a class="btn btn-info" th:href="@{/departamentos/edit/{id}(id=${departamento.id})}">Editar</a>
+        </td>
+        <td>
+          <a class="btn btn-danger" th:href="@{/departamentos/delete/{id}(id=${departamento.id})}">Borrar</a>
+        </td>
+        <td>
+          <a class="btn btn-success" th:href="@{/empleados/{id}(id=${departamento.id})}">Ver empleados</a>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <a class="btn btn-primary" th:href="@{/departamentos/new}">Nuevo departamento</a><br/>
+  <p th:if="${msgError != null}" class="alert alert-danger">
+    <span th:text="${msgError}">mensaje de error</span>
+  </p>
+</div>
+</body>
+</html>

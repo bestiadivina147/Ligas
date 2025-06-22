@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <th:block th:insert="~{fragment.html :: cabecera}"></th:block>
+    <title>Empleados</title>
+</head>
+<body>
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 th:text="'Empleados del departamento: ' + ${departamento.nombre}">Empleados</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th><th>Nombre</th><th>Puesto</th><th>Editar</th><th>Borrar</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="empleado : ${listaEmpleados}">
+                <td th:text="${empleado.id}">ID</td>
+                <td th:text="${empleado.nombre}">Nombre</td>
+                <td th:text="${empleado.puesto}">Puesto</td>
+                <td>
+                    <a class="btn btn-info"
+                       th:href="@{/empleados/edit/{id}(id=${empleado.id})}">Editar</a>
+                </td>
+                <td>
+                    <a class="btn btn-danger"
+                       th:href="@{/empleados/delete/{id}(id=${empleado.id})}">Borrar</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary"
+       th:href="@{/empleados/new/{idDepartamento}(idDepartamento=${departamento.id})}">
+        Nuevo empleado
+    </a><br/>
+</div>
+</body>
+</html>
